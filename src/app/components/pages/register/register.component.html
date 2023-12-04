@@ -1,0 +1,67 @@
+<div class="row mt-3">
+    <div class="col-md-4 offset-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center">Crie sua Conta</h2>
+          <hr />
+          <form>
+            <div class="mb-3">
+              <label for="inputNome" class="form-label"
+                >Entre com o seu nome:</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="inputNome"
+                placeholder="Digite o nome aqui"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="inputEmail" class="form-label"
+                >Entre com o seu email:</label
+              >
+              <input
+                type="email"
+                class="form-control"
+                id="inputEmail"
+                placeholder="Digite o email aqui"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="inputPassword" class="form-label"
+                >Entre com a sua senha:</label
+              >
+              <input
+                type="password"
+                class="form-control"
+                id="inputPassword"
+                placeholder="Digite a senha aqui"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="inputConfirmPassword" class="form-label"
+                >Confirme a sua senha:</label
+              >
+              <input
+                type="password"
+                class="form-control"
+                id="inputConfirmPassword"
+                placeholder="Digite a senha aqui"
+              />
+            </div>
+            <div class="mb-2">
+              <button type="submit" class="btn btn-primary w-100">
+                Realizar Cadastro
+              </button>
+            </div>
+            <div class="mb-2">
+              <button type="button" class="btn btn-light w-100"
+                [routerLink]="['/app/login']">
+                Já possui conta? <strong>Acesse aqui!</strong>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

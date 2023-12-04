@@ -1,0 +1,43 @@
+<div class="row mt-5">
+    <div class="col-md-4 offset-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center">Acessar Agenda</h2>
+          <hr />
+          <form>
+            <div class="mb-3">
+              <label for="inputEmail" class="form-label"
+                >Entre com o seu email:</label
+              >
+              <input
+                type="email"
+                class="form-control"
+                id="inputEmail"
+                placeholder="Digite o email aqui"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="inputPassword" class="form-label"
+                >Entre com a sua senha:</label
+              >
+              <input
+                type="password"
+                class="form-control"
+                id="inputPassword"
+                placeholder="Digite a senha aqui"
+              />
+            </div>
+            <div class="mb-2">
+              <button type="submit" class="btn btn-primary w-100">Entrar</button>
+            </div>
+            <div class="mb-2">
+              <button type="button" class="btn btn-light w-100"
+                [routerLink]="['/app/register']">
+                Não possui conta? <strong>Cadastre-se aqui!</strong>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
