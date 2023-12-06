@@ -1,67 +1,118 @@
 <div class="row mt-3">
-    <div class="col-md-4 offset-md-4">
-      <div class="card">
-        <div class="card-body">
-          <h2 class="card-title text-center">Crie sua Conta</h2>
-          <hr />
-          <form>
-            <div class="mb-3">
-              <label for="inputNome" class="form-label"
-                >Entre com o seu nome:</label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="inputNome"
-                placeholder="Digite o nome aqui"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="inputEmail" class="form-label"
-                >Entre com o seu email:</label
-              >
-              <input
-                type="email"
-                class="form-control"
-                id="inputEmail"
-                placeholder="Digite o email aqui"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="inputPassword" class="form-label"
-                >Entre com a sua senha:</label
-              >
-              <input
-                type="password"
-                class="form-control"
-                id="inputPassword"
-                placeholder="Digite a senha aqui"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="inputConfirmPassword" class="form-label"
-                >Confirme a sua senha:</label
-              >
-              <input
-                type="password"
-                class="form-control"
-                id="inputConfirmPassword"
-                placeholder="Digite a senha aqui"
-              />
-            </div>
-            <div class="mb-2">
-              <button type="submit" class="btn btn-primary w-100">
-                Realizar Cadastro
-              </button>
-            </div>
-            <div class="mb-2">
-              <button type="button" class="btn btn-light w-100"
-                [routerLink]="['/app/login']">
-                Já possui conta? <strong>Acesse aqui!</strong>
-              </button>
-            </div>
-          </form>
-        </div>
+  <div class="col-md-4 offset-md-4">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="card-title text-center">Crie sua Conta</h2>
+
+        <hr />
+
+        <form [formGroup]="form" (ngSubmit)="submit()">
+
+          <div class="mb-3">
+            <label for="inputNome" class="form-label"
+              >Entre com o seu nome:</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="inputNome"
+              placeholder="Digite o nome aqui"
+              formControlName="nome"
+            />
+
+            <span class="text-danger" *ngIf="f['nome'].touched && f['nome'].invalid">
+              <span *ngIf="f['nome'].errors && f['nome'].errors['required']">
+                Por favor, informe o seu nome.
+              </span>
+              <span *ngIf="f['nome'].errors && f['nome'].errors['minlength']">
+                Por favor, informe no mínimo 8 caracteres.
+              </span>
+              <span *ngIf="f['nome'].errors && f['nome'].errors['maxlength']">
+                Por favor, informe no máximo 100 caracteres.
+              </span>
+            </span>
+
+          </div>
+          <div class="mb-3">
+            <label for="inputEmail" class="form-label"
+              >Entre com o seu email:</label
+            >
+            <input
+              type="email"
+              class="form-control"
+              id="inputEmail"
+              placeholder="Digite o email aqui"
+              formControlName="email"
+            />
+
+            <span class="text-danger" *ngIf="f['email'].touched && f['email'].invalid">
+              <span *ngIf="f['email'].errors && f['email'].errors['required']">
+                Por favor, informe o seu email.
+              </span>
+              <span *ngIf="f['email'].errors && f['email'].errors['email']">
+                Por favor, informe um endereço de email válido.
+              </span>
+            </span>
+
+          </div>
+          <div class="mb-3">
+            <label for="inputPassword" class="form-label"
+              >Entre com a sua senha:</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              id="inputPassword"
+              placeholder="Digite a senha aqui"
+              formControlName="senha"
+            />
+
+            <span class="text-danger" *ngIf="f['senha'].touched && f['senha'].invalid">
+              <span *ngIf="f['senha'].errors && f['senha'].errors['required']">
+                Por favor, informe a sua senha.
+              </span>
+              <span *ngIf="f['senha'].errors && f['senha'].errors['pattern']">
+                A senha não atende aos critérios de segurança. Certifique-se de incluir letras maiúsculas, minúsculas, números e caracteres especiais.
+              </span>
+            </span>
+
+          </div>
+          <div class="mb-3">
+            <label for="inputConfirmPassword" class="form-label"
+              >Confirme a sua senha:</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              id="inputConfirmPassword"
+              placeholder="Digite a senha aqui"
+              formControlName="senhaConfirmacao"
+            />
+
+            <span class="text-danger" *ngIf="f['senhaConfirmacao'].touched && f['senhaConfirmacao'].invalid">
+              <span *ngIf="f['senhaConfirmacao'].errors && f['senhaConfirmacao'].errors['required']">
+                Por favor, confirme a sua senha.
+              </span>
+              <span *ngIf="f['senhaConfirmacao'].errors && f['senhaConfirmacao'].errors['matchPassword']">
+                Senhas não conferem, por favor verifique.
+              </span>
+            </span>
+
+          </div>
+          <div class="mb-2">
+            <button type="submit" class="btn btn-primary w-100"
+              [disabled]="form.invalid">
+              Realizar Cadastro
+            </button>
+          </div>
+          <div class="mb-2">
+            <button type="button" class="btn btn-light w-100"
+              [routerLink]="['/app/login']">
+              Já possui conta? <strong>Acesse aqui!</strong>
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
+</div>
