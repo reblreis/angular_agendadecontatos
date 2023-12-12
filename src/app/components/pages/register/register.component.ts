@@ -15,6 +15,9 @@ import { CriarContaRequest } from '../../../models/criar-conta.request';
 })
 export class RegisterComponent {
 
+  //variável do componente
+  mensagem: string = '';
+
   //método construtor
   constructor(
     private criarContaService: CriarContaService
@@ -51,6 +54,9 @@ export class RegisterComponent {
 
   //função para realizar o submit do formulário
   submit(): void {
+
+      //exibindo uma mensagem de carregamento
+      this.mensagem = 'Processando requisição, por favor aguarde...';
    
       //preenchendo os dados da requisição
       const request : CriarContaRequest = {
@@ -65,10 +71,11 @@ export class RegisterComponent {
         .post(request)
         .subscribe({
           next: (data) => { //capturar a resposta de sucesso
-            console.log(data);
+            this.mensagem = `Parabéns ${data.nome}, sua conta de usuário foi criada com sucesso.`;
+            this.form.reset(); //limpar os campos do formulário
           },
           error: (e) => { //capturar a resposta de erro
-            console.log(e);
+            this.mensagem = e.error.message;
           }
         });
   }

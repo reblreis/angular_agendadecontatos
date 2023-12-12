@@ -1,43 +1,74 @@
 <div class="row mt-5">
-    <div class="col-md-4 offset-md-4">
-      <div class="card">
-        <div class="card-body">
-          <h2 class="card-title text-center">Acessar Agenda</h2>
-          <hr />
-          <form>
-            <div class="mb-3">
-              <label for="inputEmail" class="form-label"
-                >Entre com o seu email:</label
-              >
-              <input
-                type="email"
-                class="form-control"
-                id="inputEmail"
-                placeholder="Digite o email aqui"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="inputPassword" class="form-label"
-                >Entre com a sua senha:</label
-              >
-              <input
-                type="password"
-                class="form-control"
-                id="inputPassword"
-                placeholder="Digite a senha aqui"
-              />
-            </div>
-            <div class="mb-2">
-              <button type="submit" class="btn btn-primary w-100">Entrar</button>
-            </div>
-            <div class="mb-2">
-              <button type="button" class="btn btn-light w-100"
-                [routerLink]="['/app/register']">
-                Não possui conta? <strong>Cadastre-se aqui!</strong>
-              </button>
-            </div>
-          </form>
+  <div class="col-md-4 offset-md-4">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="card-title text-center">Acessar Agenda</h2>
+        <hr />
+
+        <div class="mb-3 text-center">
+          <strong>{{mensagem}}</strong>
         </div>
+
+        <form [formGroup]="form" (ngSubmit)="submit()">
+
+          <div class="mb-3">
+            <label for="inputEmail" class="form-label"
+              >Entre com o seu email:</label
+            >
+            <input
+              type="email"
+              class="form-control"
+              id="inputEmail"
+              placeholder="Digite o email aqui"
+              formControlName="email"
+            />
+
+            <span class="text-danger" *ngIf="f['email'].touched && f['email'].invalid">
+              <span *ngIf="f['email'].errors && f['email'].errors['required']">
+                Por favor, informe o seu email de acesso.
+              </span>
+              <span *ngIf="f['email'].errors && f['email'].errors['email']">
+                Por favor, informe um endereço de email válido.
+              </span>
+            </span>
+
+          </div>
+          <div class="mb-3">
+            <label for="inputPassword" class="form-label"
+              >Entre com a sua senha:</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              id="inputPassword"
+              placeholder="Digite a senha aqui"
+              formControlName="senha"
+            />
+
+            <span class="text-danger" *ngIf="f['senha'].touched && f['senha'].invalid">
+              <span *ngIf="f['senha'].errors && f['senha'].errors['required']">
+                Por favor, informe a sua senha de acesso.
+              </span>
+              <span *ngIf="f['senha'].errors && f['senha'].errors['pattern']">
+                A senha não atende aos critérios de segurança. Certifique-se de incluir letras maiúsculas, minúsculas, números e caracteres especiais.
+              </span>
+            </span>
+
+          </div>
+          <div class="mb-2">
+            <button type="submit" class="btn btn-primary w-100"
+              [disabled]="form.invalid">
+              Entrar
+            </button>
+          </div>
+          <div class="mb-2">
+            <button type="button" class="btn btn-light w-100"
+              [routerLink]="['/app/register']">
+              Não possui conta? <strong>Cadastre-se aqui!</strong>
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
+</div>
