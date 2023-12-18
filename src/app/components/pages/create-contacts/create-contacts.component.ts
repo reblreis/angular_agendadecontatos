@@ -3,11 +3,12 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ContatosService } from '../../../services/contatos.service';
 import { ContatoRequest } from '../../../models/contato.request';
+import { MessageComponent } from '../../layout/message/message.component';
 
 @Component({
   selector: 'app-create-contacts',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, MessageComponent],
   templateUrl: './create-contacts.component.html',
   styleUrl: './create-contacts.component.css'
 })
@@ -34,11 +35,12 @@ export class CreateContactsComponent {
 
   //função para capturar o submit do formulário
   submit(): void {
-
+   
     this.mensagem = 'Processando, por favor aguarde...';
 
     //capturar os dados do formulário
     const request : ContatoRequest = {
+      idContato : null,
       nome : this.form.value.nome as string,
       email: this.form.value.email as string,
       telefone: this.form.value.telefone as string

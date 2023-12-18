@@ -1,1 +1,64 @@
-<p>edit-contacts works!</p>
+<div class="container mt-3">
+    <div class="row mb-3">
+        <div class="col">
+            <h3>Edição de contatos</h3>
+            <p>Utilize o formulário para alterar um contato.</p>
+        </div>
+    </div>
+
+    <div class="mb-2">
+        <app-message [text]="mensagem"/>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+
+        <div class="row mb-3">
+            <div class="col">
+                <label>Nome do contato:</label>
+                <input type="text" class="form-control"
+                    formControlName="nome"
+                    placeholder="Digite o nome aqui."/>
+                <div class="text-danger" *ngIf="f['nome'].touched && f['nome'].invalid">
+                    <span *ngIf="f['nome'].errors && f['nome'].errors['required']">
+                        Por favor, informe o nome do contato.
+                    </span>
+                    <span *ngIf="f['nome'].errors && f['nome'].errors['minlength']">
+                        Por favor, informe no mínimo 8 caracteres.
+                    </span>
+                </div>
+            </div>
+            <div class="col">
+                <label>Telefone:</label>
+                <input type="text" class="form-control"
+                    formControlName="telefone"
+                    placeholder="Digite o telefone aqui."/>
+                <div class="text-danger" *ngIf="f['telefone'].touched && f['telefone'].invalid">
+                    <span *ngIf="f['telefone'].errors && f['telefone'].errors['required']">
+                        Por favor, informe o telefone do contato.
+                    </span>
+                </div>
+            </div>
+            <div class="col">
+                <label>Email:</label>
+                <input type="text" class="form-control"
+                    formControlName="email"
+                    placeholder="Digite o email aqui"/>
+                <div class="text-danger" *ngIf="f['email'].touched && f['email'].invalid">
+                    <span *ngIf="f['email'].errors && f['email'].errors['required']">
+                        Por favor, informe o email do contato.
+                    </span>
+                    <span *ngIf="f['email'].errors && f['email'].errors['email']">
+                        Por favor, informe um endereço de email válido.
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <input type="submit" class="btn btn-primary"
+                    [disabled]="form.invalid"
+                    value="Salvar Alterações"/>
+            </div>
+        </div>
+    </form>
+</div>

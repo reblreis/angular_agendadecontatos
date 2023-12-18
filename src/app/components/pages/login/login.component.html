@@ -1,12 +1,12 @@
-<div class="row mt-5">
+<div class="row mt-5" *ngIf="displayPage">
   <div class="col-md-4 offset-md-4">
     <div class="card">
       <div class="card-body">
         <h2 class="card-title text-center">Acessar Agenda</h2>
         <hr />
 
-        <div class="mb-3 text-center">
-          <strong>{{mensagem}}</strong>
+        <div class="mb-3">
+          <app-message [text]="mensagem"/>
         </div>
 
         <form [formGroup]="form" (ngSubmit)="submit()">

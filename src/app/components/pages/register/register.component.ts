@@ -5,11 +5,12 @@ import { FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators } 
 import { CommonModule } from '@angular/common';
 import { PasswordMatchValidation } from '../../../validations/password-match.validation';
 import { CriarContaRequest } from '../../../models/criar-conta.request';
+import { MessageComponent } from '../../layout/message/message.component';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, RouterLink, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, RouterLink, FormsModule, ReactiveFormsModule, MessageComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
